@@ -12,13 +12,19 @@ let AddContact = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-2">
+                        <div className="col-md-4">
                             <form>
                                 <div className="mb-2">
                                     <input type="text" className="form-control" placeholder="Name"/>
                                 </div>
                                 <div className="mb-2">
-                                    <input type="text" className="form-control" placeholder="Mobile"/>
+                                    <input type="text" className="form-control" placeholder="Photo Url"/>
+                                </div>
+                                <div className="mb-2">
+                                    <input type="number" className="form-control" placeholder="Mobile"/>
+                                </div>
+                                <div className="mb-2">
+                                    <input type="submit" className="btn btn-success" placeholder="Create"/>
                                 </div>
                             </form>
                         </div>
