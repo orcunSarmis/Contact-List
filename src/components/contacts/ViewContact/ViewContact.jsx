@@ -6,7 +6,7 @@ let ViewContact = () => {
         <React.Fragment>
             <section className="view-contact-intro p-3">
                 <div className="container">
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className="col">
                             <p className="h3 text-warning fw-bold">View Contact</p>
                             <p className="fst-italic">Contact Details</p>
