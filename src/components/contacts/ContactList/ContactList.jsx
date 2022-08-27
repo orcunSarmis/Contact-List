@@ -14,7 +14,7 @@ let ContacList = () => {
                                         <i className="fa fa-plus-circle me-2"/>
                                         New</Link>
                                 </p>
-                                <p className="fst-italic"></p>
+                                <p className="fst-italic">Acces to the contacts</p>
                             </div>
                         </div>
                         <div className="row">
