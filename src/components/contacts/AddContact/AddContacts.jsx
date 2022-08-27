@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 let AddContact = () => {
     return (
@@ -25,6 +26,7 @@ let AddContact = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input type="submit" className="btn btn-success" placeholder="Create"/>
+                                    <Link to={'/contacts/list'} className="btn btn-dark ms-2">Cancel</Link>
                                 </div>
                             </form>
                         </div>
