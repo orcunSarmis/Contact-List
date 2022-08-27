@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import {ContactService} from '../../../services/ContactService';
 
 
-let ContacList = () => {
+const ContacList = () => {
 
-let [state, setState] = useState(initialState, {
+const [state, setState] = useState(initialState, {
     loading: false,
     contacts: [],
     errorMessage: ''
@@ -12,10 +13,19 @@ let [state, setState] = useState(initialState, {
 
 useEffect(effect, async () => {
     try {
-        let response = await ContcatService.getAllContacts();
-        console.log(response.data);
+        setState(value, {...state, loading: true});
+        let response = await ContactService.getAllContacts();
+        setState(value, {
+            ...state,
+            loading: false,
+            contacts: response.data
+        });
     } catch (error) {
-        
+        setState(value, {
+            ...state, 
+            loading: false,
+            errorMessage: error.message
+        })
     }
 }, inputs,[]); 
 
