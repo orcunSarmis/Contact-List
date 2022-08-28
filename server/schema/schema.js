@@ -21,6 +21,9 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         contacts: {
             type: new GraphQLList(ContactType),
+            resolve(parent, args) {
+                return contacts;
+            },
         },
         contact: {
             type: ContactType,
