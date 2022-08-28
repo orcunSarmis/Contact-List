@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const DELETE_CONTACT = gql`
-mutation deleteContact($id: ID!) {
+mutation DeleteContact($id: ID!) {
     deleteContact(id: $id) {
         id
         name
@@ -10,4 +10,22 @@ mutation deleteContact($id: ID!) {
 }
 `;
 
-export { DELETE_CONTACT };
+const UPDATE_CONTACT = gql`
+mutation UpdateContact(
+    $id: ID!
+    $name: String!
+    $mobile: String! 
+) {
+    updateContact(
+        id: $id
+        name: $name
+        mobile: $mobile 
+    ) {
+        id
+        name
+        mobile
+    }
+}
+`;
+
+export { DELETE_CONTACT, UPDATE_CONTACT };

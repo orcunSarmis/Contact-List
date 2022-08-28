@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const GET_CONTACTS =gql`
-query getContacts {
+query GetContacts {
     contacts {
         id
         name
@@ -11,7 +11,7 @@ query getContacts {
 `;
 
 const GET_CONTACT =gql`
-query getContact {
+query GetContact {
     contact {
         id
         name
