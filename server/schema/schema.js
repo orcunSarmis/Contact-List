@@ -1,5 +1,3 @@
-const { contacts } = require('../sampleData');
-
 // Mongoose models
 const Contact = require('../models/Contact');
 
@@ -7,7 +5,8 @@ const { GraphQLObjectType,
     GraphQLID, 
     GraphQLString, 
     GraphQLSchema, 
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull,
 } = require('graphql');
 
 const ContactType = new GraphQLObjectType({
@@ -38,6 +37,39 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+// Mutations
+const mutation  = new GraphQLObjectType({
+    name: 'Mutattion',
+    fields: {
+        addContact: {
+            type: ContactType,
+            args: {
+                name: { type:  GraphQLNonNull(GraphQLString) },
+                mobile: { type:  GraphQLNonNull(GraphQLString) },
+            },
+            resolve(parent, args) {
+                const contact = new Contact({
+                    name: args.name,
+                    mobile: args.mobile,
+                });
+
+                return contact.save();
+            },
+        },
+        // Delete contact
+        deleteContact: {
+            type: ContactType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) },
+            },
+            resolve(parent,args) {
+                return Contact.findByIdAndRemove(args.id);
+            },
+        },
+    },
+}) 
+
 module.exports = new GraphQLSchema({
     query: RootQuery,
+    mutation
 });
