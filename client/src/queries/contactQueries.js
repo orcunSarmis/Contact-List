@@ -8,6 +8,15 @@ query getContacts {
         mobile
     }
 }
-`
+`;
 
-export { GET_CONTACTS };
+const GET_CONTACT =gql`
+query getContact {
+    contact {
+        id
+        name
+        mobile
+    }
+}
+`;
+export { GET_CONTACTS, GET_CONTACT };

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gql, useQuery } from '@apollo/client';
 import Spinner from '../../Spinner/Spinner'; 
 import { GET_CONTACTS } from '../../../queries/contactQueries';
+import { GET_CONTACT } from '../../../queries/contactQueries';
 import { useMutation } from '@apollo/client';
 import { DELETE_CONTACT } from '../../../mutations/contactsMutations';
 
@@ -12,10 +13,11 @@ function ContacList ({contact}) {
     const { loading, error, data } = useQuery(GET_CONTACTS, {
         variables: {}
     });
-    const [deleteContact] = useMutation(DELETE_CONTACT, {
-        variables: { id: contact.id },
-        refetchQueries: [{ query: GET_CONTACTS }],
-    });
+    // const [deleteContact] = useMutation(DELETE_CONTACT, {
+    //     variables: { id: contact.id },
+    //     refetchQueries: [{ query: GET_CONTACTS }],
+    // });
+    // onClick={deleteContact}
 
     const contactData = data?.contacts || [];
 
@@ -88,10 +90,10 @@ function ContacList ({contact}) {
                                                 </ul>
                                             </div>
                                             <div className="col-md-1 d-flex flex-column align-items-center">
-                                                <Link to={'/contacts/view/:contactId'} className="btn btn-warning my-1">
+                                                <Link to={`/contacts/view/${contact.id}`} className="btn btn-warning my-1">
                                                     <i className="fa fa-eye"/>
                                                 </Link>
-                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1" onClick={deleteContact}>
+                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
                                                     <i className="fa fa-pen"/>
                                                 </Link>
                                                 <button className="btn btn-danger my-1" >

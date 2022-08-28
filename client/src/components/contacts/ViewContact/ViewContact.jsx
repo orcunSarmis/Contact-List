@@ -1,7 +1,16 @@
+import { useQuery } from "@apollo/client";
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { GET_CONTACT } from "../../../queries/contactQueries";
 
-let ViewContact = () => {
+function ViewContact ({ contact})  {
+
+    const {contactId} = useParams();
+
+    const {loading, error, data } = useQuery(GET_CONTACT, {
+        variable: {}
+    });
+
     return (
         <React.Fragment>
             <section className="view-contact-intro p-3">

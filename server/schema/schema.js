@@ -66,7 +66,7 @@ const mutation  = new GraphQLObjectType({
                 return Contact.findByIdAndRemove(args.id);
             },
         },
-        // Update contatcc
+        // Update contatc
         updateContact: {
             type: ContactType,
             args: {
