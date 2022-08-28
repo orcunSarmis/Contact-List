@@ -39,7 +39,7 @@ const RootQuery = new GraphQLObjectType({
 
 // Mutations
 const mutation  = new GraphQLObjectType({
-    name: 'Mutattion',
+    name: 'Mutation',
     fields: {
         addContact: {
             type: ContactType,
@@ -62,8 +62,28 @@ const mutation  = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLNonNull(GraphQLID) },
             },
-            resolve(parent,args) {
+            resolve(parent, args) {
                 return Contact.findByIdAndRemove(args.id);
+            },
+        },
+        // Update contatcc
+        updateContact: {
+            type: ContactType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) },
+                name: { type:  GraphQLString },
+                mobile: { type:  GraphQLString },
+            },
+            resolve(parent, args) {
+                return Contact.findByIdAndUpdate(args.id,
+                    {
+                        $set: {
+                            name: args.name,
+                            mobile: args.mobile,
+                        },
+                    },
+                    {new: true}
+                );
             },
         },
     },
