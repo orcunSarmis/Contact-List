@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { gql, useQuery } from '@apollo/client';
+import Spinner from '../../Spinner/Spinner'; 
 import { GET_CONTACTS } from '../../../queries/contactQueries';
 import { useMutation } from '@apollo/client';
 import { DELETE_CONTACT } from '../../../mutations/contactsMutations';
@@ -11,14 +12,14 @@ function ContacList ({contact}) {
     const { loading, error, data } = useQuery(GET_CONTACTS, {
         variables: {}
     });
-    // const [deleteContact] = useMutation(DELETE_CONTACT, {
-    //     variables: { id: contact.id },
-    //     refetchQueries: [{ query: GET_CONTACTS }],
-    // });
+    const [deleteContact] = useMutation(DELETE_CONTACT, {
+        variables: { id: contact.id },
+        refetchQueries: [{ query: GET_CONTACTS }],
+    });
 
     const contactData = data?.contacts || [];
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Spinner />
 
    
 
@@ -90,7 +91,7 @@ function ContacList ({contact}) {
                                                 <Link to={'/contacts/view/:contactId'} className="btn btn-warning my-1">
                                                     <i className="fa fa-eye"/>
                                                 </Link>
-                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
+                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1" onClick={deleteContact}>
                                                     <i className="fa fa-pen"/>
                                                 </Link>
                                                 <button className="btn btn-danger my-1" >
@@ -115,4 +116,3 @@ function ContacList ({contact}) {
 
 export default ContacList;
 
-// onClick={deleteContact}
