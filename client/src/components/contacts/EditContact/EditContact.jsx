@@ -1,7 +1,14 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
 import { Link } from 'react-router-dom';
+// import { UPDATE_CONTACT } from "../../../queries/contactQueries";
 
-let EditContact = () => {
+function EditContact () {
+
+    // const {loading, error, data } = useQuery(UPDATE_CONTACT, {
+    //     variable: {}
+    // });
+
     return (
         <React.Fragment>
             <section className="add-contact p-3">

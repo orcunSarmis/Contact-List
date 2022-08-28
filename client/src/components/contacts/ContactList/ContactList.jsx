@@ -17,7 +17,7 @@ function ContacList ({contact}) {
     //     variables: { id: contact.id },
     //     refetchQueries: [{ query: GET_CONTACTS }],
     // });
-    // onClick={deleteContact}
+    
 
     const contactData = data?.contacts || [];
 
@@ -93,7 +93,7 @@ function ContacList ({contact}) {
                                                 <Link to={`/contacts/view/${contact.id}`} className="btn btn-warning my-1">
                                                     <i className="fa fa-eye"/>
                                                 </Link>
-                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
+                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1" >
                                                     <i className="fa fa-pen"/>
                                                 </Link>
                                                 <button className="btn btn-danger my-1" >
@@ -115,6 +115,6 @@ function ContacList ({contact}) {
         </React.Fragment>
     )
 };
-
+// onClick={deleteContact}
 export default ContacList;
 

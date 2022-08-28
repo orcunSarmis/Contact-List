@@ -1,7 +1,13 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
 import { Link } from 'react-router-dom';
+// import { ADD_CONTACT } from "../../../queries/contactQueries";
 
-const AddContact = () => {
+function  AddContact () {
+
+    // const {loading, error, data } = useQuery(ADD_CONTACT, {
+    //     variable: {}
+    // });
     return (
         <React.Fragment>
             <section className="add-contact p-3">
