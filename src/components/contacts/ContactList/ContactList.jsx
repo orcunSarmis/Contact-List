@@ -1,33 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import {ContactService} from '../../../services/ContactService';
+// import {ContactService} from '../../../services/ContactService';
 
 
 const ContacList = () => {
 
-const [state, setState] = useState(initialState, {
-    loading: false,
-    contacts: [],
-    errorMessage: ''
-});
-
-useEffect(effect, async () => {
-    try {
-        setState(value, {...state, loading: true});
-        let response = await ContactService.getAllContacts();
-        setState(value, {
-            ...state,
-            loading: false,
-            contacts: response.data
-        });
-    } catch (error) {
-        setState(value, {
-            ...state, 
-            loading: false,
-            errorMessage: error.message
-        })
-    }
-}, inputs,[]); 
 
     return (
         <React.Fragment>
