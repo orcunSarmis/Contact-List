@@ -18,14 +18,14 @@ function App ()  {
     <React.Fragment>
       <ApolloProvider client={client}>
       <NavBar/>
-      <Routes>
-        <Route path={'/'} element={<Navigate to={'/contacts/list'}/> }/>
-        <Route path={'/contacts/list'} element={<ContacList/>} />
-        <Route path={'/contacts/add'} element={<AddContact/>} />
-        <Route path={'/contacts/view/:contactId'} element={<ViewContact/>} />
-        <Route path={'/contacts/edit/:contactId'} element={<EditContact/>} />
-      </Routes>
-      </ApolloProvider>
+          <Routes>
+            <Route path={'/'} element={<Navigate to={'/contacts/list'}/> }/>
+            <Route path={'/contacts/list'} element={<ContacList/>} />
+            <Route path={'/contacts/add'} element={<AddContact/>} />
+            <Route path={'/contacts/view/:contactId'} element={<ViewContact/>} />
+            <Route path={'/contacts/edit/:contactId'} element={<EditContact/>} />
+          </Routes>
+        </ApolloProvider>
     </React.Fragment>
   );
 }

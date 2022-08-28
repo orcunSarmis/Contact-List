@@ -6,24 +6,28 @@ import { useMutation } from '@apollo/client';
 import { DELETE_CONTACT } from '../../../mutations/contactsMutations';
 
 
+function ContacList ({contact}) {
 
-function ContacList () {
-
-    const { loading, error, data } = useQuery(GET_CONTACTS)
+    const { loading, error, data } = useQuery(GET_CONTACTS, {
+        variables: {}
+    });
     // const [deleteContact] = useMutation(DELETE_CONTACT, {
     //     variables: { id: contact.id },
+    //     refetchQueries: [{ query: GET_CONTACTS }],
     // });
 
-    if (loading) return <p>LOading...</p>
-    if (error) return <p>Wrong Something</p>
+    const contactData = data?.contacts || [];
+
+    if (loading) return <p>Loading...</p>
+
+   
+
+    console.log(contactData.id);
+    console.log(contactData.name);
+    console.log(contactData.mobile);
 
     return (
-        <React.Fragment>
-            {/* {!loading && !error && ()} */}
-            {/* {data.contacts.map((contact) => (
-                <key={contact.id} contact={contact}/>
-            ))} */}
-            <pre></pre>
+        <React.Fragment>          
             <section className="contact-search p-3">
                 <div className="container">
                     <div className="grid">
@@ -56,79 +60,59 @@ function ContacList () {
                     </div>
                 </div>
             </section>
-
+            {!loading && !error && (
+             <React.Fragment>         
             <section className="contact-list">
                 <div className="container">
                     <div className="row">
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                 <div className="row align-items-center d-flex justify-content-around">
-                                 <div className="col-md-4">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMLsn5xs11l_ijJwV8CiP9Dt4yaXatrWcgw&usqp=CAU" className="img-fluid contact-img"/>
+                        {
+                            contactData.length > 0 && 
+                            contactData.map(contact => {
+                                return (
+                                    <div className="col-md-6" key={contact.id}>
+                                    <div className="card my-2">
+                                        <div className="card-body">
+                                             <div className="row align-items-center d-flex justify-content-around">
+                                             <div className="col-md-4">
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMLsn5xs11l_ijJwV8CiP9Dt4yaXatrWcgw&usqp=CAU" className="img-fluid contact-img"/>
+                                            </div>
+                                            <div className="col-md-7">
+                                                <ul className="list-group">
+                                                    <li className="list-group-item list-group-item-action">
+                                                        Name: <span className="fw-bold">{contact.name}</span>
+                                                    </li>
+                                                    <li className="list-group-item list-group-item-action">
+                                                        Mobile: <span className="fw-bold">{contact.mobile}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-md-1 d-flex flex-column align-items-center">
+                                                <Link to={'/contacts/view/:contactId'} className="btn btn-warning my-1">
+                                                    <i className="fa fa-eye"/>
+                                                </Link>
+                                                <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
+                                                    <i className="fa fa-pen"/>
+                                                </Link>
+                                                <button className="btn btn-danger my-1" >
+                                                    <i className="fa fa-trash"/>
+                                                </button>
+                                            </div>
+                                             </div>
+                                        </div>
+                                    </div>                       
                                 </div>
-                                <div className="col-md-7">
-                                    <ul className="list-group">
-                                        <li className="list-group-item list-group-item-action">
-                                            Name: <span className="fw-bold">Claude</span>
-                                        </li>
-                                        <li className="list-group-item list-group-item-action">
-                                            Mobile: <span className="fw-bold">0499258461</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="col-md-1 d-flex flex-column align-items-center">
-                                    <Link to={'/contacts/view/:contactId'} className="btn btn-warning my-1">
-                                        <i className="fa fa-eye"/>
-                                    </Link>
-                                    <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
-                                        <i className="fa fa-pen"/>
-                                    </Link>
-                                    <button className="btn btn-danger my-1">
-                                        <i className="fa fa-trash"/>
-                                    </button>
-                                </div>
-                                 </div>
-                            </div>
-                        </div>                       
-                    </div>
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                 <div className="row align-items-center d-flex justify-content-around">
-                                 <div className="col-md-4">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMLsn5xs11l_ijJwV8CiP9Dt4yaXatrWcgw&usqp=CAU" className="img-fluid contact-img"/>
-                                </div>
-                                <div className="col-md-7">
-                                    <ul className="list-group">
-                                        <li className="list-group-item list-group-item-action">
-                                            Name: <span className="fw-bold">Claude</span>
-                                        </li>
-                                        <li className="list-group-item list-group-item-action">
-                                            Mobile: <span className="fw-bold">0499258461</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="col-md-1 d-flex flex-column align-items-center">
-                                    <Link to={'/contacts/view/:contactId'} className="btn btn-warning my-1">
-                                        <i className="fa fa-eye"/>
-                                    </Link>
-                                    <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
-                                        <i className="fa fa-pen"/>
-                                    </Link>
-                                    <button className="btn btn-danger my-1" >
-                                        <i className="fa fa-trash"/>
-                                    </button>
-                                </div>
-                                 </div>
-                            </div>
-                        </div>                      
-                    </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </section>
+            </React.Fragment>  
+            )}
         </React.Fragment>
     )
 };
-// onClick={deleteContact}
+
 export default ContacList;
+
+// onClick={deleteContact}
