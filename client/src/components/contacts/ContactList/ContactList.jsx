@@ -1,13 +1,29 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-// import {ContactService} from '../../../services/ContactService';
+import { gql, useQuery } from '@apollo/client';
+import { GET_CONTACTS } from '../../../queries/contactQueries';
+import { useMutation } from '@apollo/client';
+import { DELETE_CONTACT } from '../../../mutations/contactsMutations';
 
 
-const ContacList = () => {
 
+function ContacList () {
+
+    const { loading, error, data } = useQuery(GET_CONTACTS)
+    // const [deleteContact] = useMutation(DELETE_CONTACT, {
+    //     variables: { id: contact.id },
+    // });
+
+    if (loading) return <p>LOading...</p>
+    if (error) return <p>Wrong Something</p>
 
     return (
         <React.Fragment>
+            {/* {!loading && !error && ()} */}
+            {/* {data.contacts.map((contact) => (
+                <key={contact.id} contact={contact}/>
+            ))} */}
+            <pre></pre>
             <section className="contact-search p-3">
                 <div className="container">
                     <div className="grid">
@@ -100,7 +116,7 @@ const ContacList = () => {
                                     <Link to={'/contacts/edit/:contactId'} className="btn btn-primary my-1">
                                         <i className="fa fa-pen"/>
                                     </Link>
-                                    <button className="btn btn-danger my-1">
+                                    <button className="btn btn-danger my-1" >
                                         <i className="fa fa-trash"/>
                                     </button>
                                 </div>
@@ -114,5 +130,5 @@ const ContacList = () => {
         </React.Fragment>
     )
 };
-
+// onClick={deleteContact}
 export default ContacList;
