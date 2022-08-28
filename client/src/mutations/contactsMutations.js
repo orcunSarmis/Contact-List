@@ -12,8 +12,8 @@ mutation DeleteContact($id: ID!) {
 
 const UPDATE_CONTACT = gql`
 mutation UpdateContact(
-    $id: ID!
-    $name: String!
+    $id: ID!,
+    $name: String!,
     $mobile: String! 
 ) {
     updateContact(
@@ -28,4 +28,22 @@ mutation UpdateContact(
 }
 `;
 
-export { DELETE_CONTACT, UPDATE_CONTACT };
+const ADD_CONTACT = gql`
+mutation UpdateContact(
+    $id: ID!,
+    $name: String!
+    $mobile: String!
+    ) {
+        updateContact(
+            id: $id,
+            name: $name,
+            mobile: $mobile
+            ) {
+                id
+        name
+        mobile 
+            }
+    }
+`;
+
+export { DELETE_CONTACT, UPDATE_CONTACT, ADD_CONTACT };

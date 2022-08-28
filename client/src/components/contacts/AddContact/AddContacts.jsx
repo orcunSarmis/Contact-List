@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-let AddContact = () => {
+const AddContact = () => {
     return (
         <React.Fragment>
             <section className="add-contact p-3">
