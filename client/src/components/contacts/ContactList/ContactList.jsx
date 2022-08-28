@@ -6,6 +6,7 @@ import { GET_CONTACTS } from '../../../queries/contactQueries';
 import { GET_CONTACT } from '../../../queries/contactQueries';
 import { useMutation } from '@apollo/client';
 import { DELETE_CONTACT } from '../../../mutations/contactsMutations';
+import { QueryDocumentKeys } from "graphql/language/visitor";
 
 
 function ContacList ({contact}) {
@@ -18,6 +19,11 @@ function ContacList ({contact}) {
     //     refetchQueries: [{ query: GET_CONTACTS }],
     // });
     
+    // const [query, setQuery] = useState
+
+    // const searchContacs = (event) => {
+    //     setQuery(...QueryDocumentKeys, text event.target.value)
+    // }
 
     const contactData = data?.contacts || [];
 
@@ -50,6 +56,8 @@ function ContacList ({contact}) {
                                     <div className="col">
                                     <div className="mb-2">
                                          <input type="text" className="form-control" placeholder="Search Contact"/>   
+                                        
+
                                     </div>
                                     </div>
                                     <div className="col">
