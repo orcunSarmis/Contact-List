@@ -1,5 +1,8 @@
 const { contacts } = require('../sampleData');
 
+// Mongoose models
+const Contact = require('../models/Contact');
+
 const { GraphQLObjectType, 
     GraphQLID, 
     GraphQLString, 
@@ -22,14 +25,14 @@ const RootQuery = new GraphQLObjectType({
         contacts: {
             type: new GraphQLList(ContactType),
             resolve(parent, args) {
-                return contacts;
+                return Contact.find();
             },
         },
         contact: {
             type: ContactType,
             args: { id: { type: GraphQLID }},
             resolve(parent, args) {
-                return contacts.find(contact => contact.id === args.id);
+                return Contact.findById(args.id);
             }
         }
     }
