@@ -26,14 +26,18 @@ function ContacList ({contact}) {
     // }
 
     const contactData = data?.contacts || [];
+    console.log(contactData.length);
 
     if (loading) return <Spinner />
 
    
+    // for (let index = 0; index < contactData.length; index++) {
+    //     console.log(contactData[index].id);
+    //     console.log(contactData[index].name);
+    //     console.log(contactData[index].mobile);
+        
+    // };
 
-    console.log(contactData.id);
-    console.log(contactData.name);
-    console.log(contactData.mobile);
 
     return (
         <React.Fragment>          

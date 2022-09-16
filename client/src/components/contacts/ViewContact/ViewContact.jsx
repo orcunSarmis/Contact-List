@@ -2,14 +2,24 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { Link, useParams } from 'react-router-dom';
 import { GET_CONTACT } from "../../../queries/contactQueries";
+// import { GET_CONTACTS } from '../../../queries/contactQueries';
 
-function ViewContact ({ contact})  {
+function ViewContact ()  {
 
-    const {contactId} = useParams();
+    const { contactId } = useParams();
+
+    // const {loading, error, data } = useQuery(GET_CONTACTS, {
+    //     variable: {}
+    // });
 
     const {loading, error, data } = useQuery(GET_CONTACT, {
-        variable: {}
+    variables: { contactId: contactId }, 
+    
     });
+
+    const contact = data?.contact || {};
+    console.log(contactId);
+    // console.log(contactData);
 
     return (
         <React.Fragment>
@@ -32,10 +42,10 @@ function ViewContact ({ contact})  {
                         <div className="col-md-8">
                         <ul className="list-group">
                             <li className="list-group-item list-group-item-action">
-                                Name: <span className="fw-bold">Claude</span>
+                                Name: <span className="fw-bold">{contact.name}</span>
                             </li>
                             <li className="list-group-item list-group-item-action">
-                                Mobile: <span className="fw-bold">0499258461</span>
+                                Mobile: <span className="fw-bold">{contact.mobile}</span>
                             </li>
                         </ul>                        
                         </div>
